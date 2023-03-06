@@ -8,7 +8,7 @@ def charger_crypt(fichiercrypt):
     return cryptmess
 
 
-def cesarcryptage(text):
+def cesarcryptage(text, fichiercrypt):
     crypt = ''
     for char in text:
         if char.isalpha():
@@ -18,7 +18,7 @@ def cesarcryptage(text):
                 crypt += chr((ord(char) - 97 + 3) % 26 + 97)
         else:
             crypt += char 
-    with open("crypt.txt", "w") as f:
+    with open(fichiercrypt, "w") as f:
         f.write(crypt)
     return crypt
 
@@ -44,7 +44,7 @@ def menu():
         fichiercrypt = 'crypt.txt'
         text = charger_message(fichiermessage)
         crypt = charger_crypt(fichiercrypt)
-        cryptage = cesarcryptage(text)
+        cryptage = cesarcryptage(text, fichiercrypt)
         print("Message crypté : ")
         print(cryptage)
     elif choix == "2":
@@ -56,5 +56,17 @@ def menu():
     else:
         print("Choix invalide, veuillez entrer 1 ou 2.")
 
+def ecrire_html():
+    with open('index.html', 'w') as f:
+        f.write('<a></a>')
+        f.write('<a></a>')
+        f.write('<a></a>')
+        f.write("<html><head><title>Définitions de chiffrement</title></head><body>")
+        f.write("<h1>Définitions de chiffrement</h1>")
+        f.write("<h2>Chiffrement de César</h2>")
+        f.write("<p>Le chiffrement de César est une méthode de chiffrement par substitution qui consiste à remplacer chaque lettre du texte clair par une lettre décalée de k positions dans l'alphabet.</p>")
+        f.write("<h2>Chiffrement de Vigenère</h2>")
+        f.write("<p>Le chiffrement de Vigenère est une méthode de chiffrement par substitution polyalphabétique.</p>")
 
+ecrire_html()                
 menu()
